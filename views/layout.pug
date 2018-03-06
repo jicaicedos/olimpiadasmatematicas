@@ -1,0 +1,24 @@
+doctype html
+html(lang='es')
+	head
+		meta(charset='utf-8')
+		title AppWeb Olimpiadas Matemáticas
+		script(src="public/assets/js/jquery-3.3.1.min.js")
+		script(src="public/assets/js/popper.min.js")
+		script(src="public/bootstrap/js/bootstrap.min.js")
+		link(rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css")
+		link(rel="stylesheet" href="public/assets/css/estilos.css")
+body
+	header
+		div(class='container')
+			div(class='row justify-content-md-center')
+				div(class='col col-lg-2')
+					img(id="imagen_escudo" src='public/assets/imagenes/ie_nacional_pitalito.jpg' class="rounded-circle border border-warning")
+				div(class="col-md-auto")
+					h2 Olimpiadas matemáticas
+	div(class="franja_amarilla_header")
+		h4 Bienvenido
+	block contenido
+	block footer
+		footer(class="fixed-bottom")
+			p &copy 2018 Olimpiadas matemáticas, Derechos reservados

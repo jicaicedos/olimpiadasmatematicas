@@ -1,0 +1,16 @@
+extends ./layout.pug
+
+block contenido
+	a(href="/estudiante") Estudiante
+	div(class="container")
+		form(action="/resultado" method="POST")
+			div(class="row border rounded formLogin")
+				div(class="col-sm-12")
+					label(for="idUsuario") Nombre de usuario
+					input(type="text" id="idUsuario" name="idUsuario" placeholder="Ej: 108412345" class="form-control")
+				div(class="col-sm-12")
+					label(for="claveUsuario") Contraseña
+					input(type="password" id="claveUsuario" name="claveUsuario" class="form-control")
+			br
+			input(type="submit" value="Inciar sesión" class="btn btn-primary")
+
