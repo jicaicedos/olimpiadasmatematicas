@@ -1,0 +1,31 @@
+extends ./layout.pug
+
+block contenido
+	div(class="menu")
+		ul(class="nav nav-tabs justify-content-center")
+			li(class="nav-item")
+				a(class="nav-link" href="/administrador") Administrador		
+			li(class="nav-item")
+				a(class="nav-link" href="/") Cerrar sesión
+	h1 Listado de docentes
+	div(class='container')
+		br
+		div(class='col-sm-12')
+			table(class='table table-hover table-striped table-bordered table-condensed table-responsive' style='width: 100%')
+				thead(class='thead-light')
+					tr
+						th No. Identificación
+						th Nombre
+						th Grado
+						th Género
+						th Edad
+						th Celular
+				tbody
+					for docente in docentes
+						tr
+							td= docente.ID
+							td= docente.nombre
+							td= docente.grado
+							td= docente.genero
+							td= docente.edad
+							td= docente.num_celular

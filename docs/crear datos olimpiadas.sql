@@ -14,7 +14,7 @@ db.usuarios.insert({
 	usu_grado:"DECIMO", usu_genero:"FEMENINO", 
 	usu_edad:15, 	
 	usu_num_celular:3118248272,
-	usu_rol: "ESTUDIANTE"
+	usu_tipo: "ESTUDIANTE"
 })
 db.usuarios.insert({
 	usu_ID: 1127073731, 
@@ -23,7 +23,7 @@ db.usuarios.insert({
 	usu_genero:"FEMENINO", 
 	usu_edad:16, 
 	usu_num_celular:3205808511,
-	usu_rol: "ESTUDIANTE"
+	usu_tipo: "ESTUDIANTE"
 })
 db.usuarios.insert({
 	usu_ID: 1083894810, 
@@ -32,16 +32,16 @@ db.usuarios.insert({
 	usu_genero:"FEMENINO", 
 	usu_edad:16, 
 	usu_num_celular:3205808511,
-	usu_rol: "ESTUDIANTE"
+	usu_tipo: "ESTUDIANTE"
 })
 db.usuarios.insert({
-	usu_ID: 1080262619, 
+	usu_ID: 1080262111, 
 	usu_nombre: "JUANA GABRIELA ANACONA", 
 	usu_grado:"DECIMO", 
 	usu_genero:"FEMENINO", 
 	usu_edad:15, 
 	usu_num_celular:3143478487,
-	usu_rol: "ESTUDIANTE"
+	usu_tipo: "ESTUDIANTE"
 })
 db.usuarios.insert({
 	usu_ID: 1083895699, 
@@ -50,7 +50,7 @@ db.usuarios.insert({
 	usu_genero:"MASCULINO", 
 	usu_edad:15, 
 	usu_num_celular:3118423489,
-	usu_rol: "ESTUDIANTE"
+	usu_tipo: "ESTUDIANTE"
 })
 db.usuarios.insert({
 	usu_ID: 1083893864, 
@@ -59,7 +59,7 @@ db.usuarios.insert({
 	usu_genero:"FEMENINO", 
 	usu_edad:16, 
 	usu_num_celular:3204132781,
-	usu_rol: "ESTUDIANTE"
+	usu_tipo: "ESTUDIANTE"
 })
 db.usuarios.insert({
 	usu_ID: 1117510298, 
@@ -68,7 +68,7 @@ db.usuarios.insert({
 	usu_genero:"MASCULINO", 
 	usu_edad:15, 
 	usu_num_celular:3164254978,
-	usu_rol: "ESTUDIANTE"
+	usu_tipo: "ESTUDIANTE"
 })
 db.usuarios.insert({
 	usu_ID: 1118471717, 
@@ -77,16 +77,16 @@ db.usuarios.insert({
 	usu_genero:"FEMENINO", 
 	usu_edad:17, 
 	usu_num_celular:3016420631,
-	usu_rol: "ESTUDIANTE"
+	usu_tipo: "ESTUDIANTE"
 })
 db.usuarios.insert({
-	usu_ID: 1083883327, 
+	usu_ID: 1083883399, 
 	usu_nombre: "JUAN CARLOS VALENCIA", 
 	usu_grado:"UNDECIMO", 
 	usu_genero:"MASCULINO", 
 	usu_edad:16, 
 	usu_num_celular:3132047984,
-	usu_rol: "ESTUDIANTE"
+	usu_tipo: "ESTUDIANTE"
 })
 db.usuarios.insert({
 	usu_ID: 1144624263, 
@@ -95,7 +95,7 @@ db.usuarios.insert({
 	usu_genero:"MASCULINO", 
 	usu_edad:17, 
 	usu_num_celular:3118248272,
-	usu_rol: "ESTUDIANTE"
+	usu_tipo: "ESTUDIANTE"
 })
 
 -- Datos de 3 docentes
@@ -106,7 +106,7 @@ db.usuarios.insert({
 	usu_genero:"FEMENINO", 
 	usu_edad: 45,
 	usu_num_celular: 3118248272,
-	usu_rol: "DOCENTE"
+	usu_tipo: "DOCENTE"
 })
 db.usuarios.insert({
 	usu_ID: 1080262619, 
@@ -115,7 +115,7 @@ db.usuarios.insert({
 	usu_genero:"MASCULINO", 
 	usu_edad: 35,
 	usu_num_celular: 3132785004,
-	usu_rol: "DOCENTE"
+	usu_tipo: "DOCENTE"
 })
 db.usuarios.insert({
 	usu_ID: 1083883327, 
@@ -124,7 +124,7 @@ db.usuarios.insert({
 	usu_genero:"MASCULINO", 
 	usu_edad: 26,
 	usu_num_celular: 3118248272,
-	usu_rol: "DOCENTE"
+	usu_tipo: "DOCENTE"
 })
 -- Usuario administrador
 db.usuarios.insert({
@@ -134,41 +134,81 @@ db.usuarios.insert({
 	usu_genero:"MASCULINO", 
 	usu_edad: 26,
 	usu_num_celular: 3124758716,
-	usu_rol: "ADMINISTRADOR"
+	usu_tipo: "ADMINISTRADOR"
 })
-
--- Ver datos de Administrador
-db.usuarios.find({usu_rol:"ADMINISTRADOR"}, {_id:0} ).pretty();
-
--- Listar estudiantes
-db.usuarios.find({usu_rol:"ESTUDIANTE"}, {_id:0, usu_num_celular:0});
-db.usuarios.find({usu_rol:"ESTUDIANTE"}, {_id:0, usu_num_celular:0}).pretty();
-
--- Listar docentes
-db.usuarios.find({usu_rol:"DOCENTE"}, {_id:0, usu_num_celular:0 });
-db.usuarios.find({usu_rol:"DOCENTE"}, {_id:0, usu_num_celular:0 }).pretty();
-
 
 -- Usuarios
 db.users.insert({
-	user_ID: 1075228444, 
-	user_password: "123456"
+	user_ID: "Administrador", 
+	user_password: "*12345*",
+	user_rol: "ADMINISTRADOR"
 })
 db.users.insert({
-	user_ID: 1075228767,
-	user_password: "11111"
+	user_ID: "1075228444", 
+	user_password: "1075228444",
+	user_rol: "DOCENTE"
 })
 db.users.insert({
-	user_ID: 1117510298, 
-	user_password: "22222"
+	user_ID: "1080262619", 
+	user_password: "1080262619",
+	user_rol: "DOCENTE"
 })
 db.users.insert({
-	user_ID: 1084, 
-	user_password: "*12345*"
+	user_ID: "1083883327", 
+	user_password: "1083883327",
+	user_rol: "DOCENTE"
+})
+db.users.insert({
+	user_ID: "1075228767",
+	user_password: "1075228767",
+	user_rol: "ESTUDIANTE"
+})
+db.users.insert({
+	user_ID: "1127073731", 
+	user_password: "1127073731",
+	user_rol: "ESTUDIANTE"
+})
+db.users.insert({
+	user_ID: "1083894810", 
+	user_password: "1083894810",
+	user_rol: "ESTUDIANTE"
+})
+db.users.insert({
+	user_ID: "1080262111", 
+	user_password: "1080262111",
+	user_rol: "ESTUDIANTE"
+})
+db.users.insert({
+	user_ID: "1083895699", 
+	user_password: "1083895699",
+	user_rol: "ESTUDIANTE"
+})
+db.users.insert({
+	user_ID: "1083893864", 
+	user_password: "1083893864",
+	user_rol: "ESTUDIANTE"
+})
+db.users.insert({
+	user_ID: "1117510298", 
+	user_password: "1117510298",
+	user_rol: "ESTUDIANTE"
+})
+db.users.insert({
+	user_ID: "1118471717", 
+	user_password: "1118471717",
+	user_rol: "ESTUDIANTE"
+})
+db.users.insert({
+	user_ID: "1083883399", 
+	user_password: "1083883399",
+	user_rol: "ESTUDIANTE"
+})
+db.users.insert({
+	user_ID: "1144624263", 
+	user_password: "1144624263",
+	user_rol: "ESTUDIANTE"
 })
 
--- Listar users
-db.users.find();
 
 -- https://www.geogebra.org/m/pyXvXJp7
 -- Preguntas, opciones de respuestas y respuesta correcta
@@ -394,3 +434,17 @@ db.preguntas.insert({
 db.preguntas.find({}, {_id:0});
 db.preguntas.find({}, {_id:0}).pretty();
 
+
+-- Ver datos de Administrador
+db.usuarios.find({usu_tipo:"ADMINISTRADOR"}, {_id:0} ).pretty();
+
+-- Listar estudiantes
+db.usuarios.find({usu_tipo:"ESTUDIANTE"}, {_id:0, usu_num_celular:0});
+db.usuarios.find({usu_tipo:"ESTUDIANTE"}, {_id:0, usu_num_celular:0}).pretty();
+
+-- Listar docentes
+db.usuarios.find({usu_tipo:"DOCENTE"}, {_id:0, usu_num_celular:0 });
+db.usuarios.find({usu_tipo:"DOCENTE"}, {_id:0, usu_num_celular:0 }).pretty();
+
+-- Listar users
+db.users.find();

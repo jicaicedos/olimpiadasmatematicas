@@ -1,29 +1,3 @@
-	==============
-	NOTAS
-	==============
-
-	>> send
-	
-	Events
-	-------
-	The SendStream is an event emitter and will emit the following events:
-
-	* error: an error occurred (err)
-	* directory: a directory was requested (res, path)
-	* file: a file was requested (path, stat)
-	* headers: the headers are about to be set on a file (res, path, stat)
-	* stream: file streaming has started (stream)
-	* end: streaming has completed
-	
-	.pipe
-	------
-	The pipe method is used to pipe the response into the Node.js HTTP response object, typically send(req, path, options).pipe(res).
-
-	>> Pagina de ayuda para manejo de PUG
-
-	https://gist.github.com/joepie91/c0069ab0e0da40cc7b54b8c2203befe1
-	
-
 	==================================================================================================================
 
 	Paso 1 - Crear package.json 
@@ -105,7 +79,7 @@
 	Se hará uso de "mongoose" es un ORM (Object Relational Mapping) Mapea de Modelo relacional a objetos
 	mediante una API "ofusca" los datos
 
-	8.2 Instalar mongoose => npm mongoose --save
+	8.2 Instalar mongoose => npm install mongoose --save
 	
 	para llamar a este paquete que facilitará la conexión con los datos de mongo ya que serán más legibles
 	var mongoose = require('mongoose')

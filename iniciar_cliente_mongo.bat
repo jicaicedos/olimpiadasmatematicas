@@ -1,5 +1,5 @@
 @echo off
-color 37
+color 57
 title Aplicativo Web - Cliente MongoDB
 echo.
 echo.
