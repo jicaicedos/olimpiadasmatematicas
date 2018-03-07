@@ -1,16 +1,16 @@
 extends ./layout.pug
 
 block contenido	
-	div(class="container")
+	div(class="container col-sm-6")
 		h1 Iniciar sesión
 		form(action="/administrador" method="POST")
 			div(class="row border rounded formLogin")
 				div(class="col-sm-12")
 					label(for="idUsuario") Nombre de usuario
-					input(type="text" id="idUsuario" name="idUsuario" placeholder="Ej: 108412345 o Administrador" value="Administrador" class="form-control" autofocus)
+					input(type="text" id="idUsuario" name="idUsuario" placeholder="Ej: 108412345 o Administrador" class="form-control" autofocus value="1080262619")
 				div(class="col-sm-12")
 					label(for="claveUsuario") Contraseña
-					input(type="password" id="claveUsuario" name="claveUsuario" class="form-control" value="*12345*" required)
+					input(type="password" id="claveUsuario" name="claveUsuario" class="form-control" required value="1080262619")
 			br
 			p= mensaje
 			input(type="submit" value="Inciar sesión" class="btn btn-primary")

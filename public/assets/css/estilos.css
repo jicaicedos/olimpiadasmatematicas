@@ -54,6 +54,17 @@ h4 {
 	height: auto;
 }
 
+.btnRespuestaCorrecta1, .btnRespuestaCorrecta2 {
+	margin-right: 3px;
+}
+
+.botones_respuesta {
+	padding-left: 10px;
+	padding-right: 40px;
+}
+
+
+
 /* Imagen de pagina 'Consultar estudiantes' */
 .imagenEstudiante {
 	width: 50px;
