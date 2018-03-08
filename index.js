@@ -59,7 +59,9 @@ app.get("/estudiante", (req, res) => {
 	    	preguntas[i] = docs[arreglo[i]]
 	    }
 	    res.render("estudiante", {preguntas} )
-	})		
+	})	
+
+		
 })
 
 // Perfil estudiante => BOTON del formulario
