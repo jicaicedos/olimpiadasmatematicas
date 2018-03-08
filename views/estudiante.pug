@@ -5,5 +5,23 @@ block contenido
 		ul(class="nav nav-tabs justify-content-center")
 			li(class="nav-item")
 				a(class="nav-link" href="/") Cerrar sesión
-
-	h1 Estudiante
+	h1= id_usuario
+	div(class="container")
+		form(action="/estudiante" method="POST" class="formDocente")
+			- var i = 1
+			for pregunta in preguntas
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta #{i}: 
+							span= pregunta.pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones" id="respuesta1" autocomplete="off")
+						span(class="botones_respuesta")= pregunta.pre_opcion1
+						input(type="radio" value="2" name="opciones" id="respuesta2" autocomplete="off")
+						span(class="botones_respuesta")= pregunta.pre_opcion2
+						input(type="radio" value="3" name="opciones" id="respuesta3" autocomplete="off")
+						span(class="botones_respuesta")= pregunta.pre_opcion3
+				- i = i + 1
+			//- p(class="alert alert-dark")= preguntas
+			input(type="submit" value="Enviar" class="btn btn-primary")
+			br

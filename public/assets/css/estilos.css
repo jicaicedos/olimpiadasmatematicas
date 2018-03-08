@@ -3,6 +3,10 @@ header {
 	padding: 10px;
 }
 
+body {
+	margin-bottom: 50px;
+}
+
 footer {
 	background: #2658A3;
 	height: 50px;
@@ -34,6 +38,7 @@ h4 {
 	padding-bottom: 45px;
 	padding-left: 15px;
 	padding-right: 15px;
+	margin-bottom: 30px;
 }
 
 .d-block {
@@ -63,7 +68,9 @@ h4 {
 	padding-right: 40px;
 }
 
-
+.pregunta {
+	font-weight: bold;
+}
 
 /* Imagen de pagina 'Consultar estudiantes' */
 .imagenEstudiante {

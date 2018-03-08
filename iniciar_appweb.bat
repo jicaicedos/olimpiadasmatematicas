@@ -1,5 +1,5 @@
 @echo off
-color 47
+color 27
 title Aplicativo Web - Olimpiadas Matematicas
 echo.
 echo.

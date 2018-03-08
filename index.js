@@ -5,6 +5,9 @@ var User = require('./models/user').User // Esquema de Users
 var Usuario = require("./models/usuario").Usuario // Esquema de Usuario del sistema
 var Pregunta = require("./models/pregunta").Pregunta // Esquema de Pregunta
 
+
+var preguntas
+
 /*		MAIN	*/
 
 var app = express()
@@ -31,9 +34,37 @@ app.get("/administrador", (req, res) => {
 	res.render("administrador")
 })
 
-// Perfil estudiante
 app.get("/estudiante", (req, res) => {
-	res.render("estudiante")
+	var arreglo = []
+	Pregunta.find({}, (error, docs) => {
+		let totalPreguntas = docs.length		
+
+		// Creamos arreglo con numeros igual a la cantidad de preguntas
+		for(let i=0; i<totalPreguntas; i++) {
+			arreglo[i] = i
+		}
+
+		// Barajamos el arreglo de tal manera que queda con valores aleatorios y sin repetir
+	    let i, j, k
+	    for (i = arreglo.length; i; i--) {
+	        j = Math.floor(Math.random() * i)
+	        k = arreglo[i-1]
+	        arreglo[i-1] = arreglo[j]
+	        arreglo[j] = k
+	    }
+
+	    // Obtnemos las preguntas y las agregamos en el arreglo de preguntas: Cantidad 20 preguntas
+	    preguntas = []
+	    for(let i=0; i<20; i++) {
+	    	preguntas[i] = docs[arreglo[i]]
+	    }
+	    res.render("estudiante", {preguntas} )
+	})		
+})
+
+// Perfil estudiante => BOTON del formulario
+app.post("/estudiante", (req, res) => {
+	res.render("estudiante", {preguntas})
 })
 
 // Listar docentes
@@ -51,8 +82,7 @@ app.get("/consultarDocentes", (req, res) => {
 			}
 		}
 		res.render("consultarDocentes", {docentes})	
-	})
-	
+	})	
 })
 
 // Listar estudiantes
@@ -69,27 +99,46 @@ app.get("/consultarEstudiantes", (req, res) => {
 				num_celular: docs[i].usu_num_celular
 			}
 		}
-		res.render("consultarEstudiantes", {estudiantes})	
+		res.render( "consultarEstudiantes", {estudiantes} )
 	})
 
 })
 
+// app.post("/administrador", (req, res) => {
+// 	let mensaje = ""
+// 	User.find( {"user_ID" : req.body.idUsuario}, "user_rol", (error, docs) => {
+// 		if( docs.length==0 ) {
+// 			let mensaje = "El usuario o contraseña no coinciden"
+// 			res.render("index", {mensaje})
+// 		} else {
+// 			if ( docs[0].user_rol=="ADMINISTRADOR" ) {
+// 				res.render("administrador")
+// 			} else if( docs[0].user_rol=="DOCENTE" ) {
+// 				res.render("docente")
+// 			} else if( docs[0].user_rol=="ESTUDIANTE" ) {
+// 				res.render("estudiante")
+// 			}
+// 		}
+// 	})
+// });
+
 app.post("/administrador", (req, res) => {
-	let mensaje = ""
-	User.find( {"user_ID" : req.body.idUsuario}, "user_rol", (error, docs) => {		
-		if( docs.length==0 ) {
-			let mensaje = "El usuario o contraseña no coinciden"
-			res.render("index", {mensaje})
-		} else {
-			if ( docs[0].user_rol=="ADMINISTRADOR" ) {
-				res.render("administrador")
-			} else if(docs[0].user_rol=="DOCENTE") {
-				res.render("docente")
-			} else if(docs[0].user_rol=="ESTUDIANTE") {
-				res.render("estudiante")
-			}
-		}		
-	})
+	// let mensaje = ""
+	// var id_usuario = req.body.idUsuario
+	// User.find( {"user_ID" : req.body.idUsuario, "user_password": req.body.claveUsuario }, "user_rol", (error, docs) => {
+	// 	if( docs.length==0 ) {
+	// 		let mensaje = "El usuario o contraseña no coinciden"
+	// 		res.render("index", {mensaje})
+	// 	} else {
+	// 		if ( docs[0].user_rol=="ADMINISTRADOR" ) {
+	// 			res.render("administrador")
+	// 		} else if( docs[0].user_rol=="DOCENTE" ) {
+	// 			res.render("docente")
+	// 		} else if( docs[0].user_rol=="ESTUDIANTE" ) {
+	// 			res.render("estudiante", {id_usuario})
+	// 		}
+	// 	}
+	// })
 });
 
 // Perfil de docentes, puede ingresar preguntas

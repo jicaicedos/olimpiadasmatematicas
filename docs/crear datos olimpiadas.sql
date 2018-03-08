@@ -209,6 +209,14 @@ db.users.insert({
 	user_rol: "ESTUDIANTE"
 })
 
+-- Respuestas
+db.respuestas.insert({
+	usu_ID: "0",
+	res_usuario: 1,
+	res_correcta: 1,
+	res_tiempo_inicial: Date(),
+	res_tiempo_final: Date()
+})
 
 -- https://www.geogebra.org/m/pyXvXJp7
 -- Preguntas, opciones de respuestas y respuesta correcta
