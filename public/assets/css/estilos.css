@@ -88,10 +88,17 @@ h4 {
 }
 
 .bienvenidoEstudiante {
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
 	color: #E68A06;
 }
+
+.tiempoPrueba {
+	font-size: 20px;
+	font-weight: bold;
+	color: #654BC7;
+}
+
 /* Imagen de pagina 'Consultar estudiantes' */
 .imagenEstudiante {
 	width: 50px;

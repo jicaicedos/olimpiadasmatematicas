@@ -6,7 +6,7 @@ block contenido
 	//- 			a(class="nav-link" href="/") Cerrar sesión
 	div(class="container")
 		h1 Prueba
-		p(class="nombreEstudiante")= estudianteActual[0].usu_nombre
+		p(class="bienvenidoEstudiante centrar")= estudianteActual[0].usu_nombre
 		div(class="container")
 			form(action="/estudiante" method="POST" class="formDocente")
 				//- Pregunta 1
@@ -249,6 +249,6 @@ block contenido
 						span(class="botones_respuesta")= preguntas[19].pre_opcion2
 						input(type="radio" value="3" name="opciones20" autocomplete="off"  required)
 						span(class="botones_respuesta")= preguntas[19].pre_opcion3
-				input(type="submit" value="Enviar cuestionario" class="btn btn-primary")
+				input(type="submit" value="Enviar prueba" class="btn btn-primary")
 				br
 	script desactivarF5()

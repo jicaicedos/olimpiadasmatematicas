@@ -4,38 +4,48 @@ block contenido
 	div(class="container")
 		h3 Resultado
 		p
-			span(class="bienvenidoEstudiante")= estudiante		
-		p Respuestas del estudiante
+			span(class="bienvenidoEstudiante")= estudianteActual[0].usu_nombre
+		p
+			span(class="tiempoPrueba")= dia "-"
+			span(class="tiempoPrueba")= mes "-"
+			span(class="tiempoPrueba")= anio
+		p
+			span(class="tiempoPrueba")= tiempo
+
+		
 		div(class='row')
 			div(class='col-sm-12')
-				table(class='table table-hover table-striped table-condensed table-responsive' )
+				table(class='table table-hover table-bordered table-striped table-condensed table-responsive' )
 					thead(class='thead-light')
 						tr
 							- var n = 1
 							while n <= 20
-								th= n++
+								th P
+									span= n++
 					tbody
+						tr
+							- n = 1
+							while n <= 1
+								td(colspan="20") Respuestas de estudiante
+								- n++
 						tr
 							for respuesta in respuestas
-								td= respuesta
-		p Respuestas
-		div(class='row')
-			div(class='col-sm-12')
-				table(class='table table-hover table-striped table-condensed table-responsive' )
-					thead(class='thead-light')
+								td= respuesta		
 						tr
-							- var n = 1
-							while n <= 20
-								th= n++
-					tbody
+							- n = 1
+							while n <= 1
+								td(colspan="20") Respuestas del sistema
+								- n++
 						tr
 							for pregunta in preguntas
 								td= pregunta.pre_respuesta
 		div(class="row")
 			div(class='col-sm-12')
-				p Total respuestas correctas: 
+				p(class="bienvenidoEstudiante") Total respuestas correctas: 
 					span= contador
+		h3 Gracias por participar
 		form(action="/" method="POST")
 			input(type="submit" value="Finalizar" class="btn btn-primary")
+	script desactivarF5()
 
 

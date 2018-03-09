@@ -9,7 +9,8 @@ var Respuesta = require("./models/respuesta").Respuesta
 // Varibales globales
 var preguntas
 var estudianteActual
-// var locals = [preguntas, estudianteActual]
+var fechaInicioPrueba
+var fechaFinalPrueba
 
 /*		MAIN	*/
 
@@ -68,7 +69,8 @@ app.get("/administrador", (req, res) => {
 					ESTUDIANTE	
 ======================================================== */
 // Perfil estudiante -> Método GET
-app.get("/estudiante", (req, res) => {	
+app.get("/estudiante", (req, res) => {
+	fechaInicioPrueba = new Date()	
 	console.log("GET -> estudiante")
 	console.log(estudianteActual)
 	var arreglo = []
@@ -96,7 +98,7 @@ app.get("/estudiante", (req, res) => {
 	    	preguntas[i] = docs[arreglo[i]]
 	    }
 	    // console.log("Respuestas: "+req.body.opciones)
-	    res.render("estudiante", {preguntas}, {estudianteActual})
+	    res.render("estudiante", {preguntas, estudianteActual})
 	})
 
 })
@@ -128,6 +130,17 @@ app.post("/estudiante", (req, res) => {
 	respuestas[18] = req.body.opciones19
 	respuestas[19] = req.body.opciones20
 
+	// Respuestas correctas
+	let respuestasCorrectas = []
+	for( let i=0; i<20; i++ ) {
+		respuestasCorrectas[i] = preguntas[i].pre_respuesta
+	}
+
+	// Respuestas del estudiante
+	for( let i=0; i<20; i++ ) {
+		respuestas[i] = parseInt(respuestas[i])
+	}	
+
 	// Comparar las respuestas de estudiantes y las del sistema
 	let contador = 0
 	for( let i=0; i<20; i++ ) {
@@ -136,8 +149,33 @@ app.post("/estudiante", (req, res) => {
 		}
 		else {}
 	}
+	
+	// Guardar las respuestas en la base de datos
+	let fecha = new Date()
+	let dia = fecha.getDate(), 		// Día
+	let mes = fecha.getMonth(),      // Mes
+	let anio = fecha.getFullYear(),  // Año
 
-	res.render("resultadoEstudiante", {respuestas, preguntas, contador})
+	fechaFinalPrueba = new Date()	
+	var respuesta = new Respuesta ({
+		usu_ID: estudianteActual[0].usu_ID,
+		usu_nombre: estudianteActual[0].usu_nombre,
+		usu_respuesta: respuestas,
+		res_correcta: respuestasCorrectas,		
+		puntajeObtenido: contador,
+		tiempo: calcularTiempoPrueba(),
+		res_dia: dia, 		// Día
+		res_mes: mes,      // Mes
+		res_anio: anio,  // Año
+		res_tiempo_inicial: fechaInicioPrueba,
+		res_tiempo_final: fechaFinalPrueba
+	});
+
+	respuesta.save().then( (est) => {
+		let tiempo = calcularTiempoPrueba()
+		res.render("resultadoEstudiante", {estudianteActual, respuestas, preguntas, contador, tiempo, dia, mes, anio })
+	})
+	
 })
 
 // Listar docentes
@@ -222,6 +260,28 @@ app.post("/docente", (req, res) => {
 		})
 	})
 })
+
+function calcularTiempoPrueba() {
+	// Formato de las fecha:   MM/DD/AAAA HH:MM:SS
+	let fechaI = fechaInicioPrueba.getMonth()+"/"+fechaInicioPrueba.getDate()+"/"+fechaInicioPrueba.getFullYear()+" "+
+			     fechaInicioPrueba.getHours()+":"+fechaInicioPrueba.getMinutes()+":"+fechaInicioPrueba.getSeconds()
+
+	let fechaF = fechaFinalPrueba.getMonth()+"/"+fechaFinalPrueba.getDate()+"/"+fechaFinalPrueba.getFullYear()+" "+
+	             fechaFinalPrueba.getHours()+":"+fechaFinalPrueba.getMinutes()+":"+fechaFinalPrueba.getSeconds()
+
+    let fInicio = new Date(fechaI)
+    let fFinal = new Date(fechaF)
+
+	let milisegundos = fFinal - fInicio
+	let numeroSegundos = Math.floor(milisegundos/1000)
+	let numeroMinutos = Math.floor(numeroSegundos/60)
+
+	let horas = Math.floor(numeroMinutos/60)
+	let minutos = Math.floor(numeroMinutos%60)
+	let segundos = Math.floor(numeroSegundos%60)
+
+	return ("Tiempo prueba: "+horas+" horas "+minutos+" minutos "+segundos+" segundos")
+}
 
 // Puerto de escucha del servidor
 app.listen(8888)
