@@ -456,3 +456,5 @@ db.usuarios.find({usu_tipo:"DOCENTE"}, {_id:0, usu_num_celular:0 }).pretty();
 
 -- Listar users
 db.users.find();
+
+

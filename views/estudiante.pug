@@ -1,27 +1,253 @@
 extends ./layout.pug
-
 block contenido
-	div(class="menu")
-		ul(class="nav nav-tabs justify-content-center")
-			li(class="nav-item")
-				a(class="nav-link" href="/") Cerrar sesión
-	h1 Hola
+	//- div(class="menu")
+	//- 	ul(class="nav nav-tabs justify-content-center")
+	//- 		li(class="nav-item")
+	//- 			a(class="nav-link" href="/") Cerrar sesión
 	div(class="container")
-		form(action="/estudiante" method="POST" class="formDocente")
-			- var i = 1
-			for pregunta in preguntas
+		h1 Cuestionario
+		p(class="nombreEstudiante")= usuario
+		div(class="container")
+			form(action="/estudiante" method="POST" class="formDocente")
+				//- Pregunta 1
 				div(class="row border rounded formLogin")
 					div(class="col-sm-12")
-						p(class="pregunta") Pregunta #{i}: 
-							span= pregunta.pre_enunciado
+						p(class="pregunta") Pregunta 1: 
+							span= preguntas[0].pre_enunciado
 					div(class="btn-group" data-toggle="radio")
-						input(type="radio" value="1" name="opciones" id="respuesta1" autocomplete="off")
-						span(class="botones_respuesta")= pregunta.pre_opcion1
-						input(type="radio" value="2" name="opciones" id="respuesta2" autocomplete="off")
-						span(class="botones_respuesta")= pregunta.pre_opcion2
-						input(type="radio" value="3" name="opciones" id="respuesta3" autocomplete="off")
-						span(class="botones_respuesta")= pregunta.pre_opcion3
-				- i = i + 1
-			//- p(class="alert alert-dark")= preguntas
-			input(type="submit" value="Enviar" class="btn btn-primary")
-			br
+						input(type="radio" value="1" name="opciones1" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[0].pre_opcion1
+						input(type="radio" value="2" name="opciones1" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[0].pre_opcion2
+						input(type="radio" value="3" name="opciones1" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[0].pre_opcion3
+				//- Pregunta 2
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 2: 
+							span= preguntas[1].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones2" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[1].pre_opcion1
+						input(type="radio" value="2" name="opciones2" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[1].pre_opcion2
+						input(type="radio" value="3" name="opciones2" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[1].pre_opcion3
+				//- Pregunta 3
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 3: 
+							span= preguntas[2].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones3" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[2].pre_opcion1
+						input(type="radio" value="2" name="opciones3" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[2].pre_opcion2
+						input(type="radio" value="3" name="opciones3" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[2].pre_opcion3
+				//- Pregunta 4
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 4: 
+							span= preguntas[3].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones4" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[3].pre_opcion1
+						input(type="radio" value="2" name="opciones4" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[3].pre_opcion2
+						input(type="radio" value="3" name="opciones4" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[3].pre_opcion3
+				//- Pregunta 5
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 5: 
+							span= preguntas[4].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones5" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[4].pre_opcion1
+						input(type="radio" value="2" name="opciones5" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[4].pre_opcion2
+						input(type="radio" value="3" name="opciones5" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[4].pre_opcion3
+				//- Pregunta 6
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 6: 
+							span= preguntas[5].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones6" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[5].pre_opcion1
+						input(type="radio" value="2" name="opciones6" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[5].pre_opcion2
+						input(type="radio" value="3" name="opciones6" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[5].pre_opcion3
+				//- Pregunta 7
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 7: 
+							span= preguntas[6].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones7" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[6].pre_opcion1
+						input(type="radio" value="2" name="opciones7" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[6].pre_opcion2
+						input(type="radio" value="3" name="opciones7" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[6].pre_opcion3
+				//- Pregunta 8
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 8: 
+							span= preguntas[7].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones8" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[7].pre_opcion1
+						input(type="radio" value="2" name="opciones8" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[7].pre_opcion2
+						input(type="radio" value="3" name="opciones8" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[7].pre_opcion3
+				//- Pregunta 9
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 9: 
+							span= preguntas[8].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones9" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[8].pre_opcion1
+						input(type="radio" value="2" name="opciones9" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[8].pre_opcion2
+						input(type="radio" value="3" name="opciones9" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[8].pre_opcion3
+				//- Pregunta 10
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 10: 
+							span= preguntas[9].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones10" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[9].pre_opcion1
+						input(type="radio" value="2" name="opciones10" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[9].pre_opcion2
+						input(type="radio" value="3" name="opciones10" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[9].pre_opcion3
+				//- Pregunta 11
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 11: 
+							span= preguntas[10].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones11" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[10].pre_opcion1
+						input(type="radio" value="2" name="opciones11" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[10].pre_opcion2
+						input(type="radio" value="3" name="opciones11" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[10].pre_opcion3
+				//- Pregunta 12
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 12: 
+							span= preguntas[11].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones12" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[11].pre_opcion1
+						input(type="radio" value="2" name="opciones12" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[11].pre_opcion2
+						input(type="radio" value="3" name="opciones12" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[11].pre_opcion3
+				//- Pregunta 13
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 13: 
+							span= preguntas[12].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones13" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[12].pre_opcion1
+						input(type="radio" value="2" name="opciones13" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[12].pre_opcion2
+						input(type="radio" value="3" name="opciones13" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[12].pre_opcion3
+				//- Pregunta 14
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 14: 
+							span= preguntas[13].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones14" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[13].pre_opcion1
+						input(type="radio" value="2" name="opciones14" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[13].pre_opcion2
+						input(type="radio" value="3" name="opciones14" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[13].pre_opcion3
+				//- Pregunta 15
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 15: 
+							span= preguntas[14].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones15" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[14].pre_opcion1
+						input(type="radio" value="2" name="opciones15" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[14].pre_opcion2
+						input(type="radio" value="3" name="opciones15" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[14].pre_opcion3
+				//- Pregunta 16
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 16: 
+							span= preguntas[15].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones16" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[15].pre_opcion1
+						input(type="radio" value="2" name="opciones16" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[15].pre_opcion2
+						input(type="radio" value="3" name="opciones16" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[15].pre_opcion3
+				//- Pregunta 17
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 17: 
+							span= preguntas[16].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones17" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[16].pre_opcion1
+						input(type="radio" value="2" name="opciones17" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[16].pre_opcion2
+						input(type="radio" value="3" name="opciones17" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[16].pre_opcion3
+				//- Pregunta 18
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 18: 
+							span= preguntas[17].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones18" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[17].pre_opcion1
+						input(type="radio" value="2" name="opciones18" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[17].pre_opcion2
+						input(type="radio" value="3" name="opciones18" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[17].pre_opcion3
+				//- Pregunta 19
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 19: 
+							span= preguntas[18].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones19" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[18].pre_opcion1
+						input(type="radio" value="2" name="opciones19" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[18].pre_opcion2
+						input(type="radio" value="3" name="opciones19" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[18].pre_opcion3
+				//- Pregunta 20
+				div(class="row border rounded formLogin")
+					div(class="col-sm-12")
+						p(class="pregunta") Pregunta 20: 
+							span= preguntas[19].pre_enunciado
+					div(class="btn-group" data-toggle="radio")
+						input(type="radio" value="1" name="opciones20" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[19].pre_opcion1
+						input(type="radio" value="2" name="opciones20" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[19].pre_opcion2
+						input(type="radio" value="3" name="opciones20" autocomplete="off"  required)
+						span(class="botones_respuesta")= preguntas[19].pre_opcion3
+				input(type="submit" value="Enviar cuestionario" class="btn btn-primary")
+				br

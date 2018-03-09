@@ -1,0 +1,41 @@
+extends ./layout.pug
+
+block contenido
+	div(class="container")
+		h3 Resultado
+		p
+			span(class="bienvenidoEstudiante")= estudiante		
+		p Respuestas del estudiante
+		div(class='row')
+			div(class='col-sm-12')
+				table(class='table table-hover table-striped table-condensed table-responsive' )
+					thead(class='thead-light')
+						tr
+							- var n = 1
+							while n <= 20
+								th= n++
+					tbody
+						tr
+							for respuesta in respuestas
+								td= respuesta
+		p Respuestas
+		div(class='row')
+			div(class='col-sm-12')
+				table(class='table table-hover table-striped table-condensed table-responsive' )
+					thead(class='thead-light')
+						tr
+							- var n = 1
+							while n <= 20
+								th= n++
+					tbody
+						tr
+							for pregunta in preguntas
+								td= pregunta.pre_respuesta
+		div(class="row")
+			div(class='col-sm-12')
+				p Total respuestas correctas: 
+					span= contador
+		form(action="/" method="POST")
+			input(type="submit" value="Finalizar" class="btn btn-primary")
+
+

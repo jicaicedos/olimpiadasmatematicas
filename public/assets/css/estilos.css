@@ -4,7 +4,7 @@ header {
 }
 
 body {
-	margin-bottom: 50px;
+	margin-bottom: 100px;
 }
 
 footer {
@@ -68,10 +68,29 @@ h4 {
 	padding-right: 40px;
 }
 
+.nombreEstudiante {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+
 .pregunta {
 	font-weight: bold;
 }
 
+.respuesta {
+	margin-left: 20px;
+}
+
+.centrar {
+	text-align: center;
+}
+
+.bienvenidoEstudiante {
+	font-size: 18px;
+	font-weight: bold;
+	color: #E68A06;
+}
 /* Imagen de pagina 'Consultar estudiantes' */
 .imagenEstudiante {
 	width: 50px;

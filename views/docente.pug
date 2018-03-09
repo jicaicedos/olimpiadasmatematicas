@@ -11,26 +11,26 @@ block contenido
 			div(class="row border rounded formLogin")
 				div(class="col-sm-12")
 					label(for="enunciado") Escriba el enunciado de la pregunta
-					textarea(type="text" rows="4" cols="50" id="enunciado" name="enunciado" placeholder="Ej: ¿Cuáles son los 8 primeros elementos de la sucesión de Fibonacci?" class="form-control" autofocus)
+					textarea(type="text" rows="4" cols="50" id="enunciado" name="enunciado" placeholder="Ej: ¿Cuáles son los 8 primeros elementos de la sucesión de Fibonacci?" class="form-control" autofocus required)
 				div(class="col-sm-12")
 					label(for="opcion1") Opción 1
-					input(type="text" id="opcion1" name="opcion1" placeholder="0, -1, 1, -2, 2, -3, 3, -4" class="form-control")
+					input(type="text" id="opcion1" name="opcion1" placeholder="0, -1, 1, -2, 2, -3, 3, -4" class="form-control" required)
 				div(class="col-sm-12")
 					label(for="opcion2") Opción 2
-					input(type="text" id="opcion2" name="opcion2" placeholder="0, 1, 1, 2, 3, 5, 8, 13" class="form-control")
+					input(type="text" id="opcion2" name="opcion2" placeholder="0, 1, 1, 2, 3, 5, 8, 13" class="form-control" required)
 				div(class="col-sm-12")
 					label(for="opcion3") Opción 3
-					input(type="text" id="opcion3" name="opcion3" placeholder="1, 3, 5, 7, 9, 11, 13, 15" class="form-control")
+					input(type="text" id="opcion3" name="opcion3" placeholder="1, 3, 5, 7, 9, 11, 13, 15" class="form-control" required)
 				div(class="col-sm-12")
 					br
 					label Seleccionar la respuesta (Opción 1, 2 o 3)
 					br
 					div(class="btn-group" data-toggle="radio")
-						input(type="radio" value="1" name="opciones" id="respuesta1" autocomplete="off")
+						input(type="radio" value="1" name="opciones" id="respuesta1" autocomplete="off" required)
 						span(class="botones_respuesta") Opción 1
-						input(type="radio" value="2" name="opciones" id="respuesta2" autocomplete="off")
+						input(type="radio" value="2" name="opciones" id="respuesta2" autocomplete="off" required)
 						span(class="botones_respuesta") Opción 2
-						input(type="radio" value="3" name="opciones" id="respuesta3" autocomplete="off")
+						input(type="radio" value="3" name="opciones" id="respuesta3" autocomplete="off" required)
 						span(class="botones_respuesta") Opción 3
 			div(class="row")
 				p= mensaje
