@@ -6,8 +6,10 @@ var Usuario = require("./models/usuario").Usuario // Esquema de Usuario del sist
 var Pregunta = require("./models/pregunta").Pregunta // Esquema de Pregunta
 var Respuesta = require("./models/respuesta").Respuesta
 
-
+// Varibales globales
 var preguntas
+var estudianteActual
+// var locals = [preguntas, estudianteActual]
 
 /*		MAIN	*/
 
@@ -31,7 +33,7 @@ app.get("/", (req, res) => {
 })
 
 app.post("/", (req, res) => {
-	console.log("POST -> index")
+	console.log("POST -> /")
 	let mensaje = ""
 	var id_usuario = req.body.idUsuario
 	User.find( {"user_ID" : req.body.idUsuario, "user_password": req.body.claveUsuario }, "user_rol", (error, docs) => {
@@ -45,13 +47,12 @@ app.post("/", (req, res) => {
 				res.render("docente")
 			} else if( docs[0].user_rol=="ESTUDIANTE" ) {
 
-				// Consultamos el usuario "ESTUDIANTE" que contestará la prueba
-				Usuario.find({ "usu_ID": id_usuario}, "usu_nombre", (err, usuarios) => {
-					console.log(usuarios[0].usu_nombre)
-					let estudiante = usuarios[0].usu_nombre
-					res.render("estudianteBienvenido", {estudiante} )
-				})
-				
+				// Consultamos el usuario "ESTUDIANTE" que contestará la prueba				
+				Usuario.find({ "usu_ID": id_usuario}, "usu_ID usu_nombre usu_grado", (err, usuarioActual) => {
+					estudianteActual = usuarioActual
+					console.log(estudianteActual)
+					res.render("estudianteBienvenido", {estudianteActual} )
+				})				
 			}
 		}
 	})	
@@ -63,8 +64,13 @@ app.get("/administrador", (req, res) => {
 	res.render("administrador")
 })
 
+/* =====================================================
+					ESTUDIANTE	
+======================================================== */
+// Perfil estudiante -> Método GET
 app.get("/estudiante", (req, res) => {	
-	console.log("GET -> estudiante: "+req.body.idUsuario)
+	console.log("GET -> estudiante")
+	console.log(estudianteActual)
 	var arreglo = []
 	Pregunta.find({}, (error, docs) => {
 		let totalPreguntas = docs.length		
@@ -90,12 +96,12 @@ app.get("/estudiante", (req, res) => {
 	    	preguntas[i] = docs[arreglo[i]]
 	    }
 	    // console.log("Respuestas: "+req.body.opciones)
-	    res.render("estudiante", {preguntas})
+	    res.render("estudiante", {preguntas}, {estudianteActual})
 	})
 
 })
 
-// Perfil estudiante => BOTON del formulario
+// Perfil estudiante -> Método POST
 app.post("/estudiante", (req, res) => {
 	console.log("POST -> estudiante")
 

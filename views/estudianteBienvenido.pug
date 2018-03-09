@@ -4,14 +4,14 @@ block contenido
 	div(class="container")
 		h3 Bienvenido(a)
 		p
-			span(class="bienvenidoEstudiante")= estudiante
+			span(class="bienvenidoEstudiante")= estudianteActual[0].usu_nombre
 		h3 Pasos
-		p 1 - El cuestionario consta de 20 preguntas
+		p 1 - La prueba consta de 20 preguntas
 		p 2 - Cada pregunta consta de 3 posibles respuestas
 		p 3 - Debes seleccionar una posible respuesta por cada pregunta
-		p 4 - Al finalizar las 20 preguntas dar clic en el botón "Enviar cuestionario"
-		p 5 - Al finalizar el cuestionario verás el resumen de las respuestas que marcaste
+		p 4 - Al finalizar las 20 preguntas dar clic en el botón "Enviar prueba"
+		p 5 - Al finalizar la prueba verás el resumen de las respuestas que marcaste
 		p 6 - Y dirá el puntaje obtenido
 		p Dar clic en el siguiente enlace
 		p
-			a(href="estudiante") Cuestionario
+			a(href="estudiante") Prueba
