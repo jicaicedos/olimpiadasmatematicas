@@ -13,24 +13,24 @@ block contenido
 				a(class="nav-link" href="/determinarGanadores") Ganadores
 			li(class="nav-item")
 				a(class="nav-link" href="/") Cerrar sesión
-	div(class='container')
-		div(class='col-sm-12')
-			h1 Listado de docentes
-			table(class='table table-hover table-striped table-bordered table-condensed table-responsive' style='width: 100%')
+	div(class="container")
+		div(class="col col-sm-12")
+			h1 Mostrar resultados
+			table(class='table table-hover table-striped table-condensed table-responsive' style='width: 100%')
 				thead(class='thead-light')
 					tr
 						th No. Identificación
 						th Nombre
-						th Grado
-						th Género
-						th Edad
-						th Celular
+						th Puntaje
+						th Tiempo (HH:MM:SS)
+						th Fecha
 				tbody
-					for docente in docentes
+					for resultado in resultadosEstudiantes
 						tr
-							td= docente.ID
-							td= docente.nombre
-							td= docente.grado
-							td= docente.genero
-							td= docente.edad
-							td= docente.num_celular
+							td= resultado.usu_ID
+							td= resultado.usu_nombre
+							td= resultado.puntajeObtenido
+							td= resultado.tiempo
+							- var fechaPrueba = resultado.res_dia + "/" + resultado.res_mes  + "/" + resultado.res_anio
+							td 
+								span= fechaPrueba

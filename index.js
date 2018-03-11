@@ -37,33 +37,41 @@ app.post("/", (req, res) => {
 	console.log("POST -> /")
 	let mensaje = ""
 	var id_usuario = req.body.idUsuario
-	User.find( {"user_ID" : req.body.idUsuario, "user_password": req.body.claveUsuario }, "user_rol", (error, docs) => {
-		if( docs.length==0 ) {
-			let mensaje = "El usuario o contraseña no coinciden"
+
+	// Verificar si el alumno ya votó
+	var cont = 0
+	Respuesta.find({"usu_ID": req.body.idUsuario}, (error, docs) => {
+		cont = docs.length
+		if( cont>=1 ) {
+			mensaje = "El estudiante ya presentó la prueba"
 			res.render("index", {mensaje})
 		} else {
-			if ( docs[0].user_rol=="ADMINISTRADOR" ) {
-				res.render("administrador")
-			} else if( docs[0].user_rol=="DOCENTE" ) {
-				res.render("docente")
-			} else if( docs[0].user_rol=="ESTUDIANTE" ) {
+			User.find( {"user_ID" : req.body.idUsuario, "user_password": req.body.claveUsuario }, "user_rol", (error, docs) => {
+				if( docs.length==0 ) {
+					mensaje = "El usuario o contraseña no coinciden"
+					res.render("index", {mensaje})
+				} else {
+					if ( docs[0].user_rol=="ADMINISTRADOR" ) {
+						res.render("administrador")
+					} else if( docs[0].user_rol=="DOCENTE" ) {
+						res.render("docente")
+					} else if( docs[0].user_rol=="ESTUDIANTE" ) {
 
-				// Consultamos el usuario "ESTUDIANTE" que contestará la prueba				
-				Usuario.find({ "usu_ID": id_usuario}, "usu_ID usu_nombre usu_grado", (err, usuarioActual) => {
-					estudianteActual = usuarioActual
-					console.log(estudianteActual)
-					res.render("estudianteBienvenido", {estudianteActual} )
-				})				
-			}
-		}
-	})	
+						// Consultamos el usuario "ESTUDIANTE" que contestará la prueba				
+						Usuario.find({ "usu_ID": id_usuario}, "usu_ID usu_nombre usu_grado", (err, usuarioActual) => {
+							estudianteActual = usuarioActual
+							console.log(estudianteActual)
+							res.render("estudianteBienvenido", {estudianteActual} )
+						})				
+					}
+				}
+			})
+		}	
+
+	})
+
 })
 
-// Perfil Administrador
-app.get("/administrador", (req, res) => {
-	console.log("GET -> administrador...")
-	res.render("administrador")
-})
 
 /* =====================================================
 					ESTUDIANTE	
@@ -72,7 +80,7 @@ app.get("/administrador", (req, res) => {
 app.get("/estudiante", (req, res) => {
 	fechaInicioPrueba = new Date()	
 	console.log("GET -> estudiante")
-	console.log(estudianteActual)
+	// console.log(estudianteActual)
 	var arreglo = []
 	Pregunta.find({}, (error, docs) => {
 		let totalPreguntas = docs.length		
@@ -152,9 +160,9 @@ app.post("/estudiante", (req, res) => {
 	
 	// Guardar las respuestas en la base de datos
 	let fecha = new Date()
-	let dia = fecha.getDate(), 		// Día
-	let mes = fecha.getMonth(),      // Mes
-	let anio = fecha.getFullYear(),  // Año
+	let dia = fecha.getDate() 		// Día
+	let mes = fecha.getMonth()      // Mes
+	let anio = fecha.getFullYear()  // Año
 
 	fechaFinalPrueba = new Date()	
 	var respuesta = new Respuesta ({
@@ -173,27 +181,20 @@ app.post("/estudiante", (req, res) => {
 
 	respuesta.save().then( (est) => {
 		let tiempo = calcularTiempoPrueba()
-		res.render("resultadoEstudiante", {estudianteActual, respuestas, preguntas, contador, tiempo, dia, mes, anio })
+		let fechaExamen = "Fecha: "+dia+"/"+mes+"/"+anio
+		res.render("resultadoEstudiante", {estudianteActual, respuestas, preguntas, contador, tiempo, fechaExamen })
 	})
 	
 })
 
-// Listar docentes
-app.get("/consultarDocentes", (req, res) => {	
-	Usuario.find( {"usu_tipo": "DOCENTE"}, "usu_ID usu_nombre usu_grado usu_genero usu_edad usu_num_celular", (error, docs) => {
-		let docentes = []
-		for(let i=0; i<docs.length; i++ ) {
-			docentes[i] = {
-				ID: docs[i].usu_ID,
-				nombre: docs[i].usu_nombre,
-				grado: docs[i].usu_grado,
-				genero: docs[i].usu_genero,
-				edad: docs[i].usu_edad,
-				num_celular: docs[i].usu_num_celular
-			}
-		}
-		res.render("consultarDocentes", {docentes})	
-	})	
+/* =====================================================
+					ADMINISTRADOR
+======================================================== */
+
+// Perfil Administrador
+app.get("/administrador", (req, res) => {
+	console.log("GET -> administrador...")
+	res.render("administrador")
 })
 
 // Listar estudiantes
@@ -215,27 +216,52 @@ app.get("/consultarEstudiantes", (req, res) => {
 
 })
 
+// Mostrar resultados
+app.get("/mostrarResultados", (req, res) => {
+	console.log("GET -> mostrarResultados")
+	Respuesta.find({}, "", (error, docs) => {
+		let resultadosEstudiantes = []
+		resultadosEstudiantes = docs
+		res.render("mostrarResultados", {resultadosEstudiantes})	
+	})
+	
+})
 
-app.post("/administrador", (req, res) => {
-	console.log("POST -> administrador")
-	let mensaje = ""
-	var id_usuario = req.body.idUsuario
-	User.find( {"user_ID" : req.body.idUsuario, "user_password": req.body.claveUsuario }, "user_rol", (error, docs) => {
-		if( docs.length==0 ) {
-			let mensaje = "El usuario o contraseña no coinciden"
-			res.render("index", {mensaje})
-		} else {
-			if ( docs[0].user_rol=="ADMINISTRADOR" ) {
-				res.render("administrador")
-			} else if( docs[0].user_rol=="DOCENTE" ) {
-				res.render("docente")
-			} else if( docs[0].user_rol=="ESTUDIANTE" ) {
-				res.render("estudiante", {id_usuario})
+// Determinar ganadores
+app.get("/determinarGanadores", (req, res) => {
+	console.log("GET -> determinarGanadores")
+	Respuesta.
+	find({}).
+	sort({puntajeObtenido:-1, tiempo:1}).
+	select({_id:0, usu_ID:1, usu_nombre:1, puntajeObtenido:1, tiempo:1, res_tiempo_inicial:1,  res_tiempo_final:1}).
+	exec( (error, docs) => {
+		let ganadores = docs
+		res.render("determinarGanadores", {ganadores})
+	})
+})
+
+// Listar docentes
+app.get("/consultarDocentes", (req, res) => {	
+	console.log("GET -> consultarDocentes")
+	Usuario.find( {"usu_tipo": "DOCENTE"}, "usu_ID usu_nombre usu_grado usu_genero usu_edad usu_num_celular", (error, docs) => {
+		let docentes = []
+		for(let i=0; i<docs.length; i++ ) {
+			docentes[i] = {
+				ID: docs[i].usu_ID,
+				nombre: docs[i].usu_nombre,
+				grado: docs[i].usu_grado,
+				genero: docs[i].usu_genero,
+				edad: docs[i].usu_edad,
+				num_celular: docs[i].usu_num_celular
 			}
 		}
-	})
-});
+		res.render("consultarDocentes", {docentes})	
+	})	
+})
 
+/* =====================================================
+					DOCENTES
+======================================================== */
 // Perfil de docentes, puede ingresar preguntas
 app.post("/docente", (req, res) => {
 	// Obtener la cantidad de preguntas en el sistema
@@ -280,7 +306,7 @@ function calcularTiempoPrueba() {
 	let minutos = Math.floor(numeroMinutos%60)
 	let segundos = Math.floor(numeroSegundos%60)
 
-	return ("Tiempo prueba: "+horas+" horas "+minutos+" minutos "+segundos+" segundos")
+	return (horas+":"+minutos+":"+segundos)
 }
 
 // Puerto de escucha del servidor

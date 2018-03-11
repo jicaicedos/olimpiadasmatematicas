@@ -4,13 +4,18 @@ block contenido
 	div(class="menu")
 		ul(class="nav nav-tabs justify-content-center")
 			li(class="nav-item")
-				a(class="nav-link" href="/administrador") Administrador
+				a(class="nav-link" href="/consultarDocentes") Docentes
 			li(class="nav-item")
-				a(class="nav-link" href="/") Cerrar sesión				
-	h1 Listado de Estudiantes
+				a(class="nav-link" href="/consultarEstudiantes") Estudiantes
+			li(class="nav-item")
+				a(class="nav-link" href="/mostrarResultados") Mostrar resultados
+			li(class="nav-item")
+				a(class="nav-link" href="/determinarGanadores") Ganadores
+			li(class="nav-item")
+				a(class="nav-link" href="/") Cerrar sesión			
 	div(class='container')
-		br
 		div(class='col-sm-12')
+			h1 Listado de Estudiantes
 			table(class='table table-hover table-striped table-bordered table-condensed table-responsive' style='width: 100%')
 				thead(class='thead-light')
 					tr

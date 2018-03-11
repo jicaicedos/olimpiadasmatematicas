@@ -458,3 +458,10 @@ db.usuarios.find({usu_tipo:"DOCENTE"}, {_id:0, usu_num_celular:0 }).pretty();
 db.users.find();
 
 
+-- 
+-- CONSULTA A LA TABLA RESPUESTAS para determinar ganadores
+-- 
+
+-- Mostrar resultados de los participantes
+db.respuestas.find({}, {_id:0, usu_ID:1, usu_nombre:1, puntajeObtenido:1, tiempo:1})
+db.respuestas.find({}, {_id:0, usu_ID:1, usu_nombre:1, puntajeObtenido:1, tiempo:1, res_tiempo_inicial:1,  res_tiempo_final:1}).sort({puntajeObtenido:-1, tiempo:1})

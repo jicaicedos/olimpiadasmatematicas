@@ -5,14 +5,9 @@ block contenido
 		h3 Resultado
 		p
 			span(class="bienvenidoEstudiante")= estudianteActual[0].usu_nombre
-		p
-			span(class="tiempoPrueba")= dia "-"
-			span(class="tiempoPrueba")= mes "-"
-			span(class="tiempoPrueba")= anio
-		p
-			span(class="tiempoPrueba")= tiempo
-
-		
+		h5= fechaExamen
+		p Tiempo 
+			span(class="tiempoPrueba")= tiempo		
 		div(class='row')
 			div(class='col-sm-12')
 				table(class='table table-hover table-bordered table-striped table-condensed table-responsive' )

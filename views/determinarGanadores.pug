@@ -1,0 +1,65 @@
+extends ./layout.pug
+
+block contenido
+	div(class="menu")
+		ul(class="nav nav-tabs justify-content-center")
+			li(class="nav-item")
+				a(class="nav-link" href="/consultarDocentes") Docentes
+			li(class="nav-item")
+				a(class="nav-link" href="/consultarEstudiantes") Estudiantes
+			li(class="nav-item")
+				a(class="nav-link" href="/mostrarResultados") Mostrar resultados
+			li(class="nav-item")
+				a(class="nav-link" href="/determinarGanadores") Ganadores
+			li(class="nav-item")
+				a(class="nav-link" href="/") Cerrar sesión
+	div(class='container')
+		div(class='col-sm-12')
+			h1 Determinar ganadores
+			table(class='table table-hover table-striped table-bordered table-condensed table-responsive' style='width: 100%')
+				thead(class='thead-light')
+					tr
+						th(class="centrar") Puesto
+						th(class="centrar") No. Identificación
+						th(class="centrar") Nombre
+						th(class="centrar") Puntaje
+						th(class="centrar") Tiempo (HH:MM:SS)
+						th(class="centrar") Fecha
+				tbody
+					- var i = 1
+					for ganador in ganadores
+						if i == 1
+							tr(class="table-warning")
+								td= i
+								td= ganador.usu_ID
+								td= ganador.usu_nombre
+								td(class="centrar")= ganador.puntajeObtenido
+								td(class="centrar")= ganador.tiempo
+								td= ganador.res_tiempo_inicial
+						else if i == 2
+							tr(class="table-info")
+								td= i
+								td= ganador.usu_ID
+								td= ganador.usu_nombre
+								td(class="centrar")= ganador.puntajeObtenido
+								td(class="centrar")= ganador.tiempo
+								td= ganador.res_tiempo_inicial
+						else if i == 3
+							tr(class="table-success")
+								td= i
+								td= ganador.usu_ID
+								td= ganador.usu_nombre
+								td(class="centrar")= ganador.puntajeObtenido
+								td(class="centrar")= ganador.tiempo
+								td= ganador.res_tiempo_inicial
+
+						else
+							tr
+								td= i
+								td= ganador.usu_ID
+								td= ganador.usu_nombre
+								td(class="centrar")= ganador.puntajeObtenido
+								td(class="centrar")= ganador.tiempo
+								td= ganador.res_tiempo_inicial
+						- i++
+
