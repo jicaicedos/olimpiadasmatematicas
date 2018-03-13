@@ -197,6 +197,45 @@ app.get("/administrador", (req, res) => {
 	res.render("administrador")
 })
 
+// Adicionar usuario
+app.get("/adicionarUsuario", (req, res) => {
+	res.render("adicionarUsuario")
+})
+
+// Adicionar estudiante
+app.post("/usuarioAdicionado", (req, res) => {
+	var usuario = new Usuario({
+		usu_ID: req.body.idEstudiante, 
+		usu_nombre: req.body.nombreEstudiante, 
+		usu_grado: req.body.gradoEstudiante, 
+		usu_genero: req.body.generoEstudiante, 
+		usu_edad: req.body.edadEstudiante,
+		usu_num_celular: req.body.numeroCelularEstudiante,
+		usu_tipo: req.body.tipoEstudiante
+	})
+
+	var user = new User({
+		user_ID: req.body.idEstudiante, 
+		user_password: req.body.idEstudiante, 
+		user_rol: req.body.tipoEstudiante
+	})
+
+	usuario.save().then( (est) => {
+		console.log("usuario adicionado")
+	}, (error) => {
+			res.send("No se pudo guardar en la base de datos")
+		}
+	)
+
+	user.save().then( (est) => {
+		res.render("administrador")
+	}, 	(error) => {
+		res.send("No se pudo guardar en la base de datos")
+	})
+
+	
+})
+
 // Listar estudiantes
 app.get("/consultarEstudiantes", (req, res) => {
 	Usuario.find( {"usu_tipo": "ESTUDIANTE"}, "usu_ID usu_nombre usu_grado usu_genero usu_edad usu_num_celular", (error, docs) => {
@@ -215,6 +254,8 @@ app.get("/consultarEstudiantes", (req, res) => {
 	})
 
 })
+
+
 
 // Mostrar resultados
 app.get("/mostrarResultados", (req, res) => {

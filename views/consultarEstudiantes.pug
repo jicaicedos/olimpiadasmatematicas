@@ -5,8 +5,10 @@ block contenido
 		ul(class="nav nav-tabs justify-content-center")
 			li(class="nav-item")
 				a(class="nav-link" href="/consultarDocentes") Docentes
-			li(class="nav-item")
-				a(class="nav-link" href="/consultarEstudiantes") Estudiantes
+			div(div class="dropdown")
+				button(class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Estudiantes
+				div(div class="dropdown-menu" aria-labelledby="dropdownMenuButton")
+					a(class="dropdown-item" href="/adicionarUsuario") Adicionar
 			li(class="nav-item")
 				a(class="nav-link" href="/mostrarResultados") Mostrar resultados
 			li(class="nav-item")

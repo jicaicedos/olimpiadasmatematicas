@@ -1,0 +1,43 @@
+extends ./layout.pug
+
+block contenido
+	div(class="menu")
+		ul(class="nav nav-tabs justify-content-center")
+			li(class="nav-item")
+				a(class="nav-link" href="/consultarDocentes") Docentes
+			div(div class="dropdown")
+				button(class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Estudiantes
+				div(div class="dropdown-menu" aria-labelledby="dropdownMenuButton")
+					a(class="dropdown-item" href="Adicionar") Adicionar
+			li(class="nav-item")
+				a(class="nav-link" href="/mostrarResultados") Mostrar resultados
+			li(class="nav-item")
+				a(class="nav-link" href="/determinarGanadores") Ganadores
+			li(class="nav-item")
+				a(class="nav-link" href="/") Cerrar sesión			
+	div(class='container')
+		div(class='col-sm-12')
+			h3 Adicionar usuario
+			form(action="/usuarioAdicionado" method="POST")
+				label(for="idEstudiante") Numero de identificación
+				input(type="text" name="idEstudiante" class="form-control")
+				label(for="nombreEstudiante") Nombre 
+				input(type="text" name="nombreEstudiante" class="form-control")
+				label(for="gradoEstudiante") Grado
+				select(name="gradoEstudiante" class="form-control")
+					option(value="DÉCIMO") DÉCIMO
+					option(value="UNDÉCIMO") UNDÉCIMO
+				label(for="generoEstudiante") Género
+				select(name="generoEstudiante" class="form-control")
+					option(value="MASCULINO") MASCULINO
+					option(value="FEMENINO") FEMENINO
+				label(for="edadEstudiante") Edad
+				input(type="text" name="edadEstudiante" class="form-control")
+				label(for="numeroCelularEstudiante") Numero de celular
+				input(type="text" name="numeroCelularEstudiante" class="form-control")
+				label(for="tipoEstudiante") Tipo de usuario
+				select(name="tipoEstudiante" class="form-control")
+					option(value="DOCENTE") DOCENTE
+					option(value="ESTUDIANTE") ESTUDIANTE
+				br
+				input(type="submit" value="Adicionar usuario" class="btn btn-primary")
